@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Colorado Trip Itinerary</title>
+<meta name="theme-color" content="#1D5185" />
+<meta name="description" content="Group itinerary for the Colorado trip, Oct 20-25" />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="CO Trip" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <h1 class="app-title">Colorado Trip</h1>
+      <p class="app-subtitle">Oct 20-25, 2026</p>
+    </div>
+    <div class="theme-toggle" id="themeToggle" role="group" aria-label="Day or night mode">
+      <button type="button" class="theme-btn" data-theme-choice="light" aria-label="Day mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button type="button" class="theme-btn" data-theme-choice="dark" aria-label="Night mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="date-tabs" id="dateTabs" aria-label="Select day"></nav>
+
+  <div class="group-toggle" id="groupToggle" role="group" aria-label="Group view">
+    <button type="button" class="group-btn" data-group="hikers" id="btnHikers">Hikers</button>
+    <button type="button" class="group-btn" data-group="casual" id="btnCasual">Casual</button>
+  </div>
+</header>
+
+<main id="days"></main>
+
+<footer class="app-footer">
+  <p>Progress is saved on this device only.</p>
+  <button type="button" id="resetBtn" class="reset-btn">Reset progress</button>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

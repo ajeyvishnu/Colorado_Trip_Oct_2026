@@ -1,0 +1,14 @@
+{
+  "name": "Colorado Trip Itinerary",
+  "short_name": "CO Trip",
+  "description": "Group itinerary for the Colorado trip, Oct 20-25",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1D5185",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
