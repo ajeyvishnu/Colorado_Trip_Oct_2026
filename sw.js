@@ -1,5 +1,5 @@
-const CACHE_NAME = "co-trip-v2";
-const ASSETS = ["./", "index.html", "styles.css", "app.js", "manifest.json", "icon.svg"];
+const CACHE_NAME = "co-trip-v3";
+const ASSETS = ["./", "index.html", "index-simple.html", "styles.css", "styles-nature.css", "app.js", "manifest.json", "icon.svg"];
 
 self.addEventListener("install", event => {
   event.waitUntil(
