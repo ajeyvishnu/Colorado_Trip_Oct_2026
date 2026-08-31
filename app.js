@@ -305,6 +305,17 @@ function renderStop(stopData) {
   return li;
 }
 
+function renderGroupToggleEl() {
+  const wrap = el("div", "group-toggle day-group-toggle", { role: "group", "aria-label": "Group view" });
+  const hikersBtn = el("button", "group-btn", { type: "button", "data-group": "hikers" });
+  hikersBtn.textContent = "Hikers";
+  const casualBtn = el("button", "group-btn", { type: "button", "data-group": "casual" });
+  casualBtn.textContent = "Casual";
+  wrap.appendChild(hikersBtn);
+  wrap.appendChild(casualBtn);
+  return wrap;
+}
+
 function renderStopList(stops) {
   const ul = el("ul", "stop-list");
   stops.forEach(s => ul.appendChild(renderStop(s)));
@@ -330,6 +341,11 @@ function renderDay(day, todayId) {
   titleWrap.appendChild(dateLine);
   header.appendChild(titleWrap);
   section.appendChild(header);
+
+  const hasSplit = day.sections.some(sec => sec.split);
+  if (hasSplit) {
+    section.appendChild(renderGroupToggleEl());
+  }
 
   day.sections.forEach(sec => {
     if (sec.label) {
@@ -414,8 +430,8 @@ function renderDateTabs(todayId) {
   const nav = document.getElementById("dateTabs");
   nav.innerHTML = "";
   TRIP_DAYS.forEach(day => {
-    const btn = el("button", "date-tab", { type: "button", "data-day-id": day.id });
-    btn.textContent = day.label.split(", ")[1] || day.label;
+    const btn = el("button", "date-tab", { type: "button", "data-day-id": day.id, "aria-label": day.label });
+    btn.textContent = String(Number(day.date.split("-")[2]));
     if (day.id === todayId) {
       btn.classList.add("is-today");
       const dot = el("span", "today-dot");
@@ -436,10 +452,9 @@ function setActiveTab(dayId) {
 }
 
 function renderGroupToggle() {
-  const btnHikers = document.getElementById("btnHikers");
-  const btnCasual = document.getElementById("btnCasual");
-  btnHikers.classList.toggle("is-active", currentGroup === "hikers");
-  btnCasual.classList.toggle("is-active", currentGroup === "casual");
+  document.querySelectorAll(".group-btn").forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.group === currentGroup);
+  });
 }
 
 function renderThemeToggle() {
@@ -461,7 +476,7 @@ function renderAll() {
 
 // ---- Events -------------------------------------------------------------
 
-document.getElementById("groupToggle").addEventListener("click", ev => {
+document.getElementById("days").addEventListener("click", ev => {
   const btn = ev.target.closest(".group-btn");
   if (!btn) return;
   currentGroup = btn.dataset.group;

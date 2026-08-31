@@ -67,7 +67,6 @@ body {
   background: linear-gradient(180deg, var(--ridge-1) 0%, var(--ridge-2) 55%, var(--ridge-3) 100%);
   border-bottom: 1px solid var(--border);
   padding: 1rem 1rem 2.25rem;
-  position: relative;
   overflow: hidden;
 }
 
@@ -91,7 +90,8 @@ body {
 }
 
 .topbar-inner {
-  margin-bottom: 0.75rem;
+  max-width: 640px;
+  margin: 0 auto 0.75rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -155,6 +155,8 @@ body {
 }
 
 .date-tabs {
+  max-width: 640px;
+  margin: 0 auto;
   display: flex;
   gap: 0.4rem;
   overflow-x: auto;
@@ -167,20 +169,26 @@ body {
 .date-tabs::-webkit-scrollbar { display: none; }
 
 .date-tab {
+  position: relative;
   flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
   border: 1px solid rgba(255,255,255,0.4);
   background: rgba(255,255,255,0.12);
   color: #fff;
-  border-radius: 6px;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.8rem;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.date-tab:active { transform: scale(0.98); }
+.date-tab:active { transform: scale(0.96); }
 
 .date-tab.is-active {
   background: var(--color-orange);
@@ -195,13 +203,14 @@ body {
 }
 
 .date-tab .today-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--color-gold);
-  margin-left: 0.35rem;
-  vertical-align: middle;
 }
 .date-tab.is-active .today-dot { background: #fff; }
 
@@ -214,6 +223,10 @@ body {
   gap: 0.2rem;
   position: relative;
   z-index: 1;
+}
+
+.day-group-toggle {
+  margin-bottom: 0.75rem;
 }
 
 .group-btn {
@@ -318,6 +331,10 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.stop-list + .stop-list {
+  margin-top: 0.5rem;
 }
 
 .stop {
@@ -463,4 +480,32 @@ main {
   font-size: 0.75rem;
   cursor: pointer;
   flex: 0 0 auto;
+}
+
+/* Desktop: mouse-hover affordances on every clickable control */
+@media (hover: hover) and (pointer: fine) {
+  .stop:hover { border-left-color: var(--color-orange); }
+  .date-tab:not(.is-active):hover { border-color: var(--color-gold); color: var(--color-gold); }
+  .group-btn:not(.is-active):hover { background: var(--border); }
+  .theme-btn:not(.is-active):hover { background: rgba(255,255,255,0.28); }
+  .day-complete-btn:not(.is-done):hover { background: var(--today-bg); }
+  .reset-btn:hover { border-color: var(--text-muted); color: var(--text); }
+}
+
+/* Desktop: a wider, more comfortable reading column once there's room for it */
+@media (min-width: 860px) {
+  .topbar-inner,
+  .date-tabs,
+  main,
+  .app-footer {
+    max-width: 760px;
+  }
+
+  .stop-list {
+    gap: 0.6rem;
+  }
+
+  .stop {
+    padding: 0.85rem 1rem;
+  }
 }
