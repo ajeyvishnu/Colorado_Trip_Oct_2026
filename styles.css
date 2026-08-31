@@ -283,23 +283,28 @@ main {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
 }
 
 .stop-list + .stop-list {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .stop {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.7rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border-bottom: 1px solid var(--border);
   padding: 0.7rem 0.8rem;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
+}
+
+.stop:last-child {
+  border-bottom: none;
 }
 
 .stop:active { transform: scale(0.995); }
@@ -308,18 +313,48 @@ main {
   background: var(--bg-alt);
 }
 
+.stop-track {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* stretch the track past the row's own padding so the line reaches
+     the row's border edges and touches the divider directly */
+  margin: -0.7rem 0;
+}
+
+.track-line {
+  width: 2px;
+  flex: 1 1 auto;
+  min-height: 6px;
+  background: var(--border);
+  transition: background 0.15s;
+}
+
+.stop:first-child .track-line-top { visibility: hidden; }
+.stop:last-child .track-line-bottom { visibility: hidden; }
+
+.stop.is-done .track-line-bottom {
+  background: var(--color-primary);
+}
+
+.stop.is-done + .stop .track-line-top {
+  background: var(--color-primary);
+}
+
 .stop-check {
   flex: 0 0 auto;
   width: 22px;
   height: 22px;
   border-radius: 50%;
   border: 2px solid var(--color-neutral);
-  margin-top: 0.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   color: transparent;
   font-size: 0.8rem;
+  background: var(--card-bg);
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
@@ -423,7 +458,7 @@ main {
 
 /* Desktop: mouse-hover affordances on every clickable control */
 @media (hover: hover) and (pointer: fine) {
-  .stop:hover { border-color: var(--color-primary); }
+  .stop:not(.is-done):hover { background: var(--bg-alt); }
   .date-tab:not(.is-active):hover { border-color: var(--color-primary); color: var(--color-primary); }
   .group-btn:not(.is-active):hover { background: var(--border); }
   .theme-btn:not(.is-active):hover { background: var(--border); }
@@ -440,11 +475,171 @@ main {
     max-width: 760px;
   }
 
-  .stop-list {
-    gap: 0.6rem;
-  }
-
   .stop {
     padding: 0.85rem 1rem;
   }
+
+  .stop-track {
+    margin: -0.85rem 0;
+  }
+}
+
+/* ---- Ratings ------------------------------------------------------ */
+
+.star-row {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.star-row svg {
+  width: 20%;
+  height: 100%;
+  flex: 0 0 auto;
+}
+
+.star-bg-icon {
+  fill: none;
+  stroke: var(--color-neutral);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.star-fg-icon {
+  fill: var(--color-gold);
+  stroke: var(--color-gold);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.rating-gauge {
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  padding: 0.25rem;
+  margin: -0.25rem 0;
+  cursor: pointer;
+}
+
+.rating-gauge-value {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.rating-modal-stars {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+
+.star-hit {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.rating-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.55);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.rating-modal-overlay.is-open {
+  display: flex;
+}
+
+.rating-modal {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 1.25rem;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rating-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating-modal-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.rating-modal-close {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 0.25rem;
+}
+
+.rating-modal-value {
+  text-align: center;
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.rating-modal-comment {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  background: var(--bg);
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.rating-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.rating-modal-clear {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.rating-modal-save {
+  background: var(--color-primary);
+  border: none;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
 }

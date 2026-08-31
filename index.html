@@ -44,6 +44,22 @@
   <button type="button" id="resetBtn" class="reset-btn">Reset progress</button>
 </footer>
 
+<div class="rating-modal-overlay" id="ratingModalOverlay">
+  <div class="rating-modal" role="dialog" aria-modal="true" aria-labelledby="ratingModalTitle">
+    <div class="rating-modal-header">
+      <h3 id="ratingModalTitle">Rate this place</h3>
+      <button type="button" class="rating-modal-close" id="ratingModalClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="rating-modal-stars" id="ratingModalStars"></div>
+    <p class="rating-modal-value" id="ratingModalValue">Not rated yet</p>
+    <textarea class="rating-modal-comment" id="ratingModalComment" placeholder="Add a comment (optional)" rows="3"></textarea>
+    <div class="rating-modal-actions">
+      <button type="button" class="rating-modal-clear" id="ratingModalClear">Clear rating</button>
+      <button type="button" class="rating-modal-save" id="ratingModalSave">Save</button>
+    </div>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

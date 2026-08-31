@@ -1,10 +1,11 @@
 // ---- Data model -----------------------------------------------------
-// Each stop: { id, name, time, locationName, locationLink }
+// Each stop: { id, name, time, locationName, locationLink, isExploring }
 // time: rough placeholder label ("Morning"/"Afternoon"/"All day") - swap for exact times later.
 // locationLink: placeholder for now ("" or "#") - drop in real Google Maps links later.
+// isExploring: places worth rating (sights, hikes, towns) vs. logistics/lodging/events.
 
-function stop(id, name, time, locationName, locationLink) {
-  return { id, name, time, locationName: locationName || "", locationLink: locationLink || "" };
+function stop(id, name, time, locationName, locationLink, isExploring = true) {
+  return { id, name, time, locationName: locationName || "", locationLink: locationLink || "", isExploring };
 }
 
 const TRIP_DAYS = [
@@ -18,12 +19,12 @@ const TRIP_DAYS = [
         label: "",
         split: false,
         activities: [
-          stop("oct20-landing", "Landing (Ajay, Rahul)", "3:00 PM", "Denver Airport", ""),
-          stop("oct20-rental-car", "Take a Rental car", "Afternoon", "Denver Airport", ""),
+          stop("oct20-landing", "Landing (Ajay, Rahul)", "3:00 PM", "Denver Airport", "", false),
+          stop("oct20-rental-car", "Take a Rental car", "Afternoon", "Denver Airport", "", false),
           stop("oct20-explore-boulder", "Explore Boulder", "Afternoon", "Boulder", "https://maps.app.goo.gl/Tyw95BGp8J3rWYYf8"),
-          stop("oct20-pickup-gang", "Pick up the gang", "11:30 PM", "Denver Airport", ""),
-          stop("oct20-2nd-car", "Take the 2nd car", "Late Night", "Denver Airport", ""),
-          stop("oct20-return-airbnb", "Return to Airbnb", "Late Night", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
+          stop("oct20-pickup-gang", "Pick up the gang", "11:30 PM", "Denver Airport", "", false),
+          stop("oct20-2nd-car", "Take the 2nd car", "Late Night", "Denver Airport", "", false),
+          stop("oct20-return-airbnb", "Return to Airbnb", "Late Night", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false)
         ]
       }
     ]
@@ -38,24 +39,24 @@ const TRIP_DAYS = [
         label: "Haldi",
         split: false,
         activities: [
-          stop("oct21-haldi", "Haldi", "Morning", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9"),
-          stop("oct21-haldi-outfit-change", "Outfit change", "Morning", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
+          stop("oct21-haldi", "Haldi", "Morning", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9", false),
+          stop("oct21-haldi-outfit-change", "Outfit change", "Morning", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false)
         ]
       },
       {
         label: "Wedding",
         split: false,
         activities: [
-          stop("oct21-wedding", "Wedding", "Afternoon", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9"),
-          stop("oct21-wedding-outfit-change", "Outfit change", "Afternoon", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
+          stop("oct21-wedding", "Wedding", "Afternoon", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9", false),
+          stop("oct21-wedding-outfit-change", "Outfit change", "Afternoon", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false)
         ]
       },
       {
         label: "Reception",
         split: false,
         activities: [
-          stop("oct21-reception", "Reception", "Evening", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9"),
-          stop("oct21-reception-drive-airbnb", "Drive to Airbnb", "Night", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
+          stop("oct21-reception", "Reception", "Evening", "Venue", "https://maps.app.goo.gl/7H2eSvn9tnEezfoE9", false),
+          stop("oct21-reception-drive-airbnb", "Drive to Airbnb", "Night", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false)
         ]
       }
     ]
@@ -70,12 +71,12 @@ const TRIP_DAYS = [
         label: "",
         split: false,
         activities: [
-          stop("oct22-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
+          stop("oct22-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false),
           stop("oct22-pikes-peak", "Pikes Peak", "10:15 AM", "Pikes Peak", "https://maps.app.goo.gl/JzDto3tDcCocqqPm6"),
           stop("oct22-manitou-springs", "Manitou Springs (Lunch)", "1:00 PM", "Manitou Springs", "https://maps.app.goo.gl/Fk17Ky97cXtn4KHGA"),
           stop("oct22-manitou-cliff-dwellings", "Manitou Cliff Dwellings", "2:00 PM", "Manitou Cliff Dwellings", "https://maps.app.goo.gl/FiMuiAf8QskcvVre9"),
           stop("oct22-garden-of-gods", "Garden of the Gods", "3:00 PM", "Garden of the Gods", "https://maps.app.goo.gl/8HSc3iTex7KmHmYx7"),
-          stop("oct22-drive-estes", "Drive to Estes Park", "5:15 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6")
+          stop("oct22-drive-estes", "Drive to Estes Park", "5:15 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6", false)
         ]
       }
     ]
@@ -90,14 +91,14 @@ const TRIP_DAYS = [
         label: "",
         split: false,
         activities: [
-          stop("oct23-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
+          stop("oct23-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false),
           stop("oct23-beaver-meadows-vc", "Beaver Meadows Visitor Center", "8:15 AM", "Beaver Meadows Visitor Center", "https://maps.app.goo.gl/ggdNA88GvpvA6ZBo9"),
           stop("oct23-sprague-lake", "Sprague Lake", "8:55 AM", "Sprague Lake", "https://maps.app.goo.gl/8DmmvoWUeDumeNoKA"),
           stop("oct23-moraine-discovery", "Moraine Park Discovery Center", "10:10 AM", "Moraine Park Discovery Center", "https://maps.app.goo.gl/1Vx295rv6fMjhfaUA"),
           stop("oct23-moraine-views", "Moraine Park Views", "11:00 AM", "Moraine Park", "https://maps.app.goo.gl/T63yMKbeHpLMkYzR6"),
-          stop("oct23-alpine-visitor-center", "Trail Ridge Road: Alpine Visitor Center (Lunch, ~2hr15min)", "12:30 PM", "Alpine Visitor Center", "https://maps.app.goo.gl/exYEPaG3ML6cArCa7"),
-          stop("oct23-holzwarth", "Trail Ridge Road: Holzwarth Historic Site (if time permits & roads open)", "2:45 PM", "Holzwarth Historic Site", "https://maps.app.goo.gl/gXnVXRgE3KQ8h6qm8"),
-          stop("oct23-mountain-shop", "Back to Estes Park Mountain Shop (Closes 8 PM)", "6:00 PM", "Estes Park Mountain Shop", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA"),
+          stop("oct23-alpine-visitor-center", "Trail Ridge Road: Alpine Visitor Center", "12:30 PM", "Alpine Visitor Center", "https://maps.app.goo.gl/exYEPaG3ML6cArCa7"),
+          stop("oct23-holzwarth", "Trail Ridge Road: Holzwarth Historic Site", "2:45 PM", "Holzwarth Historic Site", "https://maps.app.goo.gl/gXnVXRgE3KQ8h6qm8"),
+          stop("oct23-mountain-shop", "Back to Estes Park Mountain Shop (Closes 8 PM)", "6:00 PM", "Estes Park Mountain Shop", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", false),
           stop("oct23-bike-lake-estes", "Bike ride at Lake Estes", "6:15 PM", "Lake Estes", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA")
         ]
       }
@@ -113,16 +114,16 @@ const TRIP_DAYS = [
         label: "",
         split: true,
         hikers: [
-          stop("oct24-hikers-start-day", "Leave Airbnb, start the day", "5:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
+          stop("oct24-hikers-start-day", "Leave Airbnb, start the day", "5:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false),
           stop("oct24-hikers-chasm-lake", "Chasm Lake hike", "5:30 AM", "Chasm Lake Trailhead", "https://maps.app.goo.gl/mh9U4Ms78ngKqVHR9"),
-          stop("oct24-hikers-lunch", "Lunch", "12:30 PM", "", "")
+          stop("oct24-hikers-lunch", "Lunch", "12:30 PM", "", "", false)
         ],
         casual: [
-          stop("oct24-casual-start-day", "Leave Airbnb, start the day", "8:30 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
+          stop("oct24-casual-start-day", "Leave Airbnb, start the day", "8:30 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false),
           stop("oct24-casual-alluvial-fan", "Alluvial Fan", "9:00 AM", "Alluvial Fan", "https://maps.app.goo.gl/9nqcwJ1WXaJkHJb4A"),
           stop("oct24-casual-horseshoe-park", "Horseshoe Park", "9:55 AM", "Horseshoe Park", "https://maps.app.goo.gl/nKG9vtoVquJSYofz6"),
           stop("oct24-casual-lily-lake", "Lily Lake", "11:10 AM", "Lily Lake", "https://maps.app.goo.gl/oFmrvamhYbkjEv9a7"),
-          stop("oct24-casual-lunch", "Lunch", "12:30 PM", "", "")
+          stop("oct24-casual-lunch", "Lunch", "12:30 PM", "", "", false)
         ]
       },
       {
@@ -133,7 +134,7 @@ const TRIP_DAYS = [
           stop("oct24-glen-haven", "Visit Glen Haven", "2:15 PM", "Glen Haven", "https://maps.app.goo.gl/e7Q4ws9XbaPB8qrd8"),
           stop("oct24-mustang-coaster", "Mustang Mountain Coaster", "3:00 PM", "Mustang Mountain Coaster", "https://maps.app.goo.gl/s6h77Fh76uReS7hc9"),
           stop("oct24-explore-estes", "Explore Estes Park Town", "3:30 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6"),
-          stop("oct24-back-airbnb", "Back to Airbnb", "7:00 PM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
+          stop("oct24-back-airbnb", "Back to Airbnb", "7:00 PM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false)
         ]
       }
     ]
@@ -148,19 +149,19 @@ const TRIP_DAYS = [
         label: "",
         split: true,
         shared: [
-          stop("oct25-start-day", "Leave Airbnb, start the day", "6:45 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
+          stop("oct25-start-day", "Leave Airbnb, start the day", "6:45 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16", false),
           stop("oct25-bear-nymph-lake", "Bear Lake → Nymph Lake (hike together)", "7:15 AM", "Bear Lake Trailhead", "https://maps.app.goo.gl/TyWiM3g2LLiyNL549")
         ],
         hikers: [
           stop("oct25-hikers-dream-emerald-haiyaha", "Dream Lake → Emerald Lake → Lake Haiyaha (continue hike)", "8:15 AM", "Lake Haiyaha", ""),
-          stop("oct25-hikers-lunch", "Lunch (back near Bear Lake Trailhead)", "12:00 PM", "Bear Lake Trailhead", ""),
-          stop("oct25-hikers-drive-airport", "Drive to Denver Airport", "12:45 PM", "Denver Airport", ""),
-          stop("oct25-hikers-car-return", "Car Return", "2:30 PM", "Denver Airport", "")
+          stop("oct25-hikers-lunch", "Lunch (back near Bear Lake Trailhead)", "12:00 PM", "Bear Lake Trailhead", "", false),
+          stop("oct25-hikers-drive-airport", "Drive to Denver Airport", "12:45 PM", "Denver Airport", "", false),
+          stop("oct25-hikers-car-return", "Car Return", "2:30 PM", "Denver Airport", "", false)
         ],
         casual: [
           stop("oct25-casual-boulder-denver", "Boulder & Denver Downtown (explore)", "8:15 AM", "Boulder", "https://maps.app.goo.gl/Tyw95BGp8J3rWYYf8"),
-          stop("oct25-casual-drive-airport", "Drive to Denver Airport", "1:15 PM", "Denver Airport", ""),
-          stop("oct25-casual-car-return", "Car Return", "2:00 PM", "Denver Airport", "")
+          stop("oct25-casual-drive-airport", "Drive to Denver Airport", "1:15 PM", "Denver Airport", "", false),
+          stop("oct25-casual-car-return", "Car Return", "2:00 PM", "Denver Airport", "", false)
         ]
       }
     ]
@@ -173,6 +174,7 @@ const STORAGE_KEY_COMPLETED = "coTrip.completedStops";
 const STORAGE_KEY_GROUP = "coTrip.group";
 const STORAGE_KEY_DAY_COMPLETE = "coTrip.completedDays";
 const STORAGE_KEY_THEME = "coTrip.theme";
+const STORAGE_KEY_RATINGS = "coTrip.ratings";
 
 const TRIP_START = new Date("2026-10-20T00:00:00");
 const TRIP_END = new Date("2026-10-25T23:59:59");
@@ -226,10 +228,24 @@ function saveTheme(theme) {
   localStorage.setItem(STORAGE_KEY_THEME, theme);
 }
 
+function loadRatings() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_RATINGS);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveRatings(ratings) {
+  localStorage.setItem(STORAGE_KEY_RATINGS, JSON.stringify(ratings));
+}
+
 let completedStops = loadCompleted();
 let completedDays = loadCompletedDays();
 let currentGroup = loadGroup();
 let currentTheme = loadTheme();
+let ratings = loadRatings();
 applyTheme(currentTheme);
 
 function isTripLive() {
@@ -257,15 +273,83 @@ function el(tag, className, attrs) {
   return e;
 }
 
+const STAR_PATH = "M12 2 L14.9 8.6 L22 9.3 L16.7 14.1 L18.2 21 L12 17.3 L5.8 21 L7.3 14.1 L2 9.3 L9.1 8.6 Z";
+
+function makeStarSvg(cls) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  if (cls) svg.setAttribute("class", cls);
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", STAR_PATH);
+  svg.appendChild(path);
+  return svg;
+}
+
+// A row of 5 independent stars - each one is either fully filled or fully
+// empty, decided per-star (rating is a whole number 0-5). No overlapping
+// layers or width-clipping, so there's nothing that can misalign.
+function renderStarRow(rating, opts) {
+  opts = opts || {};
+  const starSize = opts.size || 16;
+  const row = el("span", "star-row" + (opts.interactive ? " star-row-interactive" : ""), {
+    style: `width:${starSize * 5}px;height:${starSize}px;`
+  });
+
+  for (let i = 1; i <= 5; i++) {
+    row.appendChild(makeStarSvg(i <= rating ? "star-fg-icon" : "star-bg-icon"));
+  }
+
+  if (opts.interactive) {
+    for (let i = 1; i <= 5; i++) {
+      const hit = el("button", "star-hit", {
+        type: "button",
+        style: `left:${(i - 1) * 20}%;width:20%;`,
+        "aria-label": `Rate ${i} out of 5`
+      });
+      hit.addEventListener("click", () => opts.onPick(i));
+      row.appendChild(hit);
+    }
+  }
+
+  return row;
+}
+
+// Compact preview badge shown on exploring stops.
+function renderRatingGauge(stopId, name) {
+  const info = ratings[stopId] || {};
+  const val = info.rating || 0;
+  const btn = el("button", "rating-gauge" + (val ? "" : " is-unrated"), {
+    type: "button",
+    "aria-label": val ? `Rated ${val} of 5. Tap to change.` : "Rate this place"
+  });
+  btn.appendChild(renderStarRow(val, { size: 14 }));
+  if (val) {
+    const label = el("span", "rating-gauge-value");
+    label.textContent = val;
+    btn.appendChild(label);
+  }
+  btn.addEventListener("click", ev => {
+    ev.stopPropagation();
+    openRatingModal(stopId, name);
+  });
+  return btn;
+}
+
 function renderStop(stopData) {
   const li = el("li", "stop");
   li.dataset.stopId = stopData.id;
   const done = completedStops.has(stopData.id);
   if (done) li.classList.add("is-done");
 
+  const track = el("div", "stop-track");
+  const lineTop = el("span", "track-line track-line-top");
   const check = el("span", "stop-check");
   check.textContent = "✓";
-  li.appendChild(check);
+  const lineBottom = el("span", "track-line track-line-bottom");
+  track.appendChild(lineTop);
+  track.appendChild(check);
+  track.appendChild(lineBottom);
+  li.appendChild(track);
 
   const body = el("div", "stop-body");
 
@@ -299,6 +383,10 @@ function renderStop(stopData) {
 
   body.appendChild(meta);
   li.appendChild(body);
+
+  if (stopData.isExploring) {
+    li.appendChild(renderRatingGauge(stopData.id, stopData.name));
+  }
 
   li.addEventListener("click", () => toggleStop(stopData.id));
 
@@ -473,6 +561,67 @@ function renderAll() {
   renderThemeToggle();
   if (todayId) setActiveTab(todayId);
 }
+
+// ---- Rating modal ---------------------------------------------------------
+
+let modalStopId = null;
+let modalSelectedRating = 0;
+
+function openRatingModal(stopId, name) {
+  modalStopId = stopId;
+  const info = ratings[stopId] || {};
+  modalSelectedRating = info.rating || 0;
+  document.getElementById("ratingModalTitle").textContent = name;
+  document.getElementById("ratingModalComment").value = info.comment || "";
+  renderModalStars();
+  document.getElementById("ratingModalOverlay").classList.add("is-open");
+}
+
+function closeRatingModal() {
+  document.getElementById("ratingModalOverlay").classList.remove("is-open");
+  modalStopId = null;
+}
+
+function renderModalStars() {
+  const starsWrap = document.getElementById("ratingModalStars");
+  starsWrap.innerHTML = "";
+  starsWrap.appendChild(renderStarRow(modalSelectedRating, {
+    size: 32,
+    interactive: true,
+    onPick: val => {
+      modalSelectedRating = val;
+      renderModalStars();
+    }
+  }));
+  document.getElementById("ratingModalValue").textContent =
+    modalSelectedRating ? `${modalSelectedRating} / 5` : "Not rated yet";
+}
+
+function saveModalRating() {
+  if (!modalStopId) return;
+  const comment = document.getElementById("ratingModalComment").value.trim();
+  if (modalSelectedRating || comment) {
+    ratings[modalStopId] = { rating: modalSelectedRating || null, comment };
+  } else {
+    delete ratings[modalStopId];
+  }
+  saveRatings(ratings);
+  closeRatingModal();
+  renderAll();
+}
+
+document.getElementById("ratingModalClose").addEventListener("click", closeRatingModal);
+document.getElementById("ratingModalOverlay").addEventListener("click", ev => {
+  if (ev.target.id === "ratingModalOverlay") closeRatingModal();
+});
+document.getElementById("ratingModalClear").addEventListener("click", () => {
+  modalSelectedRating = 0;
+  renderModalStars();
+});
+document.getElementById("ratingModalSave").addEventListener("click", saveModalRating);
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape") closeRatingModal();
+});
 
 // ---- Events -------------------------------------------------------------
 
