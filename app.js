@@ -21,7 +21,6 @@ const TRIP_DAYS = [
           stop("oct20-landing", "Landing (Ajay, Rahul)", "3:00 PM", "Denver Airport", ""),
           stop("oct20-rental-car", "Take a Rental car", "Afternoon", "Denver Airport", ""),
           stop("oct20-explore-boulder", "Explore Boulder", "Afternoon", "Boulder", "https://maps.app.goo.gl/Tyw95BGp8J3rWYYf8"),
-          stop("oct20-drive-airbnb", "Drive to Airbnb", "Evening", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
           stop("oct20-pickup-gang", "Pick up the gang", "11:30 PM", "Denver Airport", ""),
           stop("oct20-2nd-car", "Take the 2nd car", "Late Night", "Denver Airport", ""),
           stop("oct20-return-airbnb", "Return to Airbnb", "Late Night", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
@@ -74,8 +73,9 @@ const TRIP_DAYS = [
           stop("oct22-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16"),
           stop("oct22-pikes-peak", "Pikes Peak", "10:15 AM", "Pikes Peak", "https://maps.app.goo.gl/JzDto3tDcCocqqPm6"),
           stop("oct22-manitou-springs", "Manitou Springs (Lunch)", "1:00 PM", "Manitou Springs", "https://maps.app.goo.gl/Fk17Ky97cXtn4KHGA"),
-          stop("oct22-garden-of-gods", "Garden of the Gods", "2:45 PM", "Garden of the Gods", "https://maps.app.goo.gl/8HSc3iTex7KmHmYx7"),
-          stop("oct22-drive-estes", "Drive to Estes Park", "5:00 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6")
+          stop("oct22-manitou-cliff-dwellings", "Manitou Cliff Dwellings", "2:00 PM", "Manitou Cliff Dwellings", "https://maps.app.goo.gl/FiMuiAf8QskcvVre9"),
+          stop("oct22-garden-of-gods", "Garden of the Gods", "3:00 PM", "Garden of the Gods", "https://maps.app.goo.gl/8HSc3iTex7KmHmYx7"),
+          stop("oct22-drive-estes", "Drive to Estes Park", "5:15 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6")
         ]
       }
     ]
