@@ -131,7 +131,8 @@ const TRIP_DAYS = [
         activities: [
           stop("oct24-devils-gulch-road", "Drive through Devils Gulch Road", "2:00 PM", "Devils Gulch Road", ""),
           stop("oct24-glen-haven", "Visit Glen Haven", "2:15 PM", "Glen Haven", "https://maps.app.goo.gl/e7Q4ws9XbaPB8qrd8"),
-          stop("oct24-explore-estes", "Explore Estes Park Town", "3:15 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6"),
+          stop("oct24-mustang-coaster", "Mustang Mountain Coaster", "3:00 PM", "Mustang Mountain Coaster", "https://maps.app.goo.gl/s6h77Fh76uReS7hc9"),
+          stop("oct24-explore-estes", "Explore Estes Park Town", "3:30 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6"),
           stop("oct24-back-airbnb", "Back to Airbnb", "7:00 PM", "Airbnb", "https://maps.app.goo.gl/PKsRBwgyDYeyE2J16")
         ]
       }
