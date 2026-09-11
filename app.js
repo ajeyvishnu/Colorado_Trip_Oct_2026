@@ -81,7 +81,12 @@ const TRIP_DAYS = [
     id: "oct22",
     date: "2026-10-22",
     label: "Thu, Oct 22",
-    title: "Day 2: Pikes Peak & Garden of the Gods",
+    title: {
+      byRoute: {
+        pikes: "Day 2: Pikes Peak & Manitou Springs",
+        maroon: "Day 2: Aspen & Maroon Bells"
+      }
+    },
     stay: {
       byRoute: {
         pikes: { name: "Tonight: YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
@@ -116,7 +121,12 @@ const TRIP_DAYS = [
     id: "oct23",
     date: "2026-10-23",
     label: "Fri, Oct 23",
-    title: "Day 3: Rocky Mountain NP & Trail Ridge Road",
+    title: {
+      byRoute: {
+        pikes: "Day 3: Rocky Mountain NP & Estes Park",
+        maroon: "Day 3: Vail & Estes Park"
+      }
+    },
     stay: { name: "YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
     nextDayWake: "Hikers wake by 3:45 AM · Casual wake by 7:15 AM · Maroon Bells group by 7:30 AM",
     sections: [
@@ -507,7 +517,7 @@ function renderDay(day, todayId) {
   const header = el("div", "day-header");
   const titleWrap = el("div");
   const h2 = el("h2", "day-title");
-  h2.textContent = day.title;
+  h2.textContent = day.title && day.title.byRoute ? day.title.byRoute[currentRoute] : day.title;
   if (day.id === todayId) {
     const pill = el("span", "today-pill");
     pill.textContent = "Today";
