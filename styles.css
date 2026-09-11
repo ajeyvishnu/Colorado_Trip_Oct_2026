@@ -372,6 +372,12 @@ main {
   margin: 0;
 }
 
+.stop-activity-icon {
+  display: inline-block;
+  margin-right: 0.3rem;
+  font-size: 0.85em;
+}
+
 .stop.is-done .stop-name {
   text-decoration: line-through;
   color: var(--text-muted);
@@ -432,6 +438,48 @@ main {
   background: var(--color-primary);
   color: #fff;
 }
+
+.day-stay {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0 0 0.85rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--bg-alt);
+  border-radius: 8px;
+}
+
+.day-stay-icon {
+  flex: 0 0 auto;
+}
+
+.day-stay a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.day-stay a:hover { text-decoration: underline; }
+
+.day-wake-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.stop-alltrails a {
+  color: var(--color-orange);
+  text-decoration: none;
+  font-weight: 600;
+}
+.stop-alltrails a:hover { text-decoration: underline; }
 
 .app-footer {
   max-width: 640px;
