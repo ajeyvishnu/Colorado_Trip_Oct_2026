@@ -33,9 +33,9 @@ const TRIP_DAYS = [
           stop("oct20-landing", "Landing (Ajay, Rahul)", "3:00 PM", "Denver Airport", "", false),
           stop("oct20-rental-car", "Take a Rental car", "Afternoon", "Denver Airport", "", false),
           stop("oct20-explore-boulder", "Explore Boulder & Denver Downtown", "Afternoon", "Boulder", "https://maps.app.goo.gl/Tyw95BGp8J3rWYYf8"),
-          stop("oct20-pickup-gang", "Pick up the gang", "11:30 PM", "Denver Airport", "", false),
-          stop("oct20-2nd-car", "Take the 2nd car", "Late Night", "Denver Airport", "", false),
-          stop("oct20-return-airbnb", "Return to Airbnb", "Late Night", "Airbnb", AIRBNB_1_LINK, false)
+          stop("oct20-return-airbnb-1", "Return to Airbnb (Ajay & Rahul)", "Evening", "Airbnb", AIRBNB_1_LINK, false),
+          stop("oct20-2nd-car", "Rent the other 2 cars", "11:30 PM", "Denver Airport", "", false),
+          stop("oct20-return-airbnb", "Rest of the gang to Airbnb", "Late Night", "Airbnb", AIRBNB_1_LINK, false)
         ]
       }
     ]
@@ -82,33 +82,34 @@ const TRIP_DAYS = [
     date: "2026-10-22",
     label: "Thu, Oct 22",
     title: {
-      byRoute: {
-        pikes: "Day 2: Pikes Peak & Manitou Springs",
-        maroon: "Day 2: Aspen & Maroon Bells"
+      byGroup: {
+        hikers: "Day 2: Pikes Peak & Manitou Springs",
+        casual: "Day 2: Aspen & Maroon Bells"
       }
     },
     stay: {
-      byRoute: {
-        pikes: { name: "Tonight: YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
-        maroon: { name: "Tonight: Glenwood Springs", link: "https://maps.app.goo.gl/FJT6QpqEMndiCcYa9" }
+      byGroup: {
+        hikers: { name: "Tonight: YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
+        casual: { name: "Tonight: Glenwood Springs", link: "https://maps.app.goo.gl/FJT6QpqEMndiCcYa9" }
       }
     },
-    nextDayWake: "Wake by 7:00 AM",
+    nextDayWake: "Hikers wake by 3:45 AM · Casual wake by 7:15 AM",
     sections: [
       {
         label: "",
         split: true,
-        groupKind: "route",
-        pikes: [
+        hikers: [
           stop("oct22-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", AIRBNB_1_LINK, false),
           stop("oct22-pikes-peak", "Pikes Peak", "10:15 AM", "Pikes Peak", "https://maps.app.goo.gl/JzDto3tDcCocqqPm6"),
           stop("oct22-manitou-springs", "Manitou Springs (Lunch)", "1:00 PM", "Manitou Springs", "https://maps.app.goo.gl/Fk17Ky97cXtn4KHGA"),
           stop("oct22-manitou-mineral-walk", "Manitou Mineral Spring Walk", "2:00 PM", "Manitou Springs", "https://maps.app.goo.gl/Fk17Ky97cXtn4KHGA", true, "", "hike"),
           stop("oct22-manitou-cliff-dwellings", "Manitou Cliff Dwellings", "3:30 PM", "Manitou Cliff Dwellings", "https://maps.app.goo.gl/FiMuiAf8QskcvVre9"),
           stop("oct22-garden-of-gods", "Garden of the Gods", "4:30 PM", "Garden of the Gods", "https://maps.app.goo.gl/8HSc3iTex7KmHmYx7"),
-          stop("oct22-drive-estes", "Drive to Estes Park (YMCA of the Rockies)", "6:00 PM", "YMCA of the Rockies", AIRBNB_2_LINK, false)
+          stop("oct22-drive-estes", "Drive to Estes Park", "5:15 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6", false),
+          stop("oct22-mountain-shop-rent", "Estes Park Mountain Shop (Rent gear for tomorrow's hike, Closes 8 PM)", "7:00 PM", "Estes Park Mountain Shop", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", false),
+          stop("oct22-arrive-airbnb", "Arrive at Airbnb (YMCA of the Rockies)", "7:30 PM", "YMCA of the Rockies", AIRBNB_2_LINK, false)
         ],
-        maroon: [
+        casual: [
           stop("oct22-maroon-start-day", "Leave Airbnb, start the day (~4.5hr scenic drive)", "8:00 AM", "Airbnb", AIRBNB_1_LINK, false),
           stop("oct22-maroon-aspen", "Aspen", "12:15 PM", "Aspen", "https://maps.app.goo.gl/hV3nEjAbYpDbnv4Q8"),
           stop("oct22-maroon-bells", "Maroon Bells", "1:15 PM", "Maroon Bells", "https://maps.app.goo.gl/oyjVpfD8FofDoySV7"),
@@ -121,50 +122,9 @@ const TRIP_DAYS = [
     id: "oct23",
     date: "2026-10-23",
     label: "Fri, Oct 23",
-    title: {
-      byRoute: {
-        pikes: "Day 3: Rocky Mountain NP & Estes Park",
-        maroon: "Day 3: Vail & Estes Park"
-      }
-    },
+    title: "Day 3: Chasm Lake Hike or Casual Loop",
     stay: { name: "YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
-    nextDayWake: "Hikers wake by 3:45 AM · Casual wake by 7:15 AM · Maroon Bells group by 7:30 AM",
-    sections: [
-      {
-        label: "",
-        split: true,
-        groupKind: "route",
-        pikes: [
-          stop("oct23-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", AIRBNB_2_LINK, false),
-          stop("oct23-beaver-meadows-vc", "Beaver Meadows Visitor Center", "8:15 AM", "Beaver Meadows Visitor Center", "https://maps.app.goo.gl/ggdNA88GvpvA6ZBo9", true, "", "none"),
-          stop("oct23-sprague-lake", "Sprague Lake", "8:55 AM", "Sprague Lake", "https://maps.app.goo.gl/8DmmvoWUeDumeNoKA"),
-          stop("oct23-moraine-discovery", "Moraine Park Discovery Center", "10:10 AM", "Moraine Park Discovery Center", "https://maps.app.goo.gl/1Vx295rv6fMjhfaUA", true, "", "none"),
-          stop("oct23-moraine-views", "Moraine Park Views", "11:00 AM", "Moraine Park", "https://maps.app.goo.gl/T63yMKbeHpLMkYzR6")
-        ],
-        maroon: [
-          stop("oct23-maroon-start-day", "Leave Glenwood Springs, start the day", "8:00 AM", "Glenwood Springs", "https://maps.app.goo.gl/FJT6QpqEMndiCcYa9", false),
-          stop("oct23-maroon-vail", "Vail", "9:00 AM", "Vail", "https://maps.app.goo.gl/AAjgcBp6bFR99aWy6"),
-          stop("oct23-maroon-drive-estes", "Drive to Estes Park (join the group)", "9:30 AM", "Estes Park", AIRBNB_2_LINK, false)
-        ]
-      },
-      {
-        label: "",
-        split: false,
-        activities: [
-          stop("oct23-alpine-visitor-center", "Trail Ridge Road Drive / Drinks in Estes Park", "12:30 PM", "Alpine Visitor Center", "https://maps.app.goo.gl/exYEPaG3ML6cArCa7", true, "", "drive"),
-          stop("oct23-mountain-shop", "Back to Estes Park Mountain Shop (Closes 8 PM)", "6:00 PM", "Estes Park Mountain Shop", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", false),
-          stop("oct23-bike-lake-estes", "Bike ride at Lake Estes", "6:15 PM", "Lake Estes", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", true, "", "bike")
-        ]
-      }
-    ]
-  },
-  {
-    id: "oct24",
-    date: "2026-10-24",
-    label: "Sat, Oct 24",
-    title: "Day 4: Chasm Lake Hike or Casual Loop",
-    stay: { name: "YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
-    nextDayWake: "Wake by 5:30 AM",
+    nextDayWake: "Wake by 7:00 AM",
     sections: [
       {
         label: "",
@@ -191,6 +151,33 @@ const TRIP_DAYS = [
           stop("oct24-mustang-coaster", "Mustang Mountain Coaster", "3:00 PM", "Mustang Mountain Coaster", "https://maps.app.goo.gl/s6h77Fh76uReS7hc9", true, "", "none"),
           stop("oct24-explore-estes", "Explore Estes Park Town", "3:30 PM", "Estes Park", "https://maps.app.goo.gl/KByAYrgDgfoPtFGG6"),
           stop("oct24-back-airbnb", "Back to Airbnb", "7:00 PM", "Airbnb", AIRBNB_2_LINK, false)
+        ]
+      }
+    ]
+  },
+  {
+    id: "oct24",
+    date: "2026-10-24",
+    label: "Sat, Oct 24",
+    title: "Day 4: Rocky Mountain NP & Trail Ridge Road",
+    stay: { name: "YMCA of the Rockies, Estes Park", link: AIRBNB_2_LINK },
+    nextDayWake: "Wake by 5:30 AM",
+    sections: [
+      {
+        label: "",
+        split: false,
+        activities: [
+          stop("oct23-start-day", "Leave Airbnb, start the day", "8:00 AM", "Airbnb", AIRBNB_2_LINK, false),
+          stop("oct23-beaver-meadows-vc", "Beaver Meadows Visitor Center", "8:15 AM", "Beaver Meadows Visitor Center", "https://maps.app.goo.gl/ggdNA88GvpvA6ZBo9", true, "", "none"),
+          stop("oct23-sprague-lake", "Sprague Lake", "8:55 AM", "Sprague Lake", "https://maps.app.goo.gl/8DmmvoWUeDumeNoKA"),
+          stop("oct23-moraine-discovery", "Moraine Park Discovery Center", "10:10 AM", "Moraine Park Discovery Center", "https://maps.app.goo.gl/1Vx295rv6fMjhfaUA", true, "", "none"),
+          stop("oct23-moraine-views", "Moraine Park Views", "11:00 AM", "Moraine Park", "https://maps.app.goo.gl/T63yMKbeHpLMkYzR6"),
+          stop("oct23-alpine-visitor-center", "Trail Ridge Road Drive / Drinks in Estes Park", "12:30 PM", "Alpine Visitor Center", "https://maps.app.goo.gl/exYEPaG3ML6cArCa7", true, "", "drive"),
+          stop("oct23-alluvial-fan", "Alluvial Fan", "2:30 PM", "Alluvial Fan", "https://maps.app.goo.gl/9nqcwJ1WXaJkHJb4A"),
+          stop("oct23-horseshoe-park", "Horseshoe Park", "3:00 PM", "Horseshoe Park", "https://maps.app.goo.gl/nKG9vtoVquJSYofz6"),
+          stop("oct23-lily-lake", "Lily Lake", "3:30 PM", "Lily Lake", "https://maps.app.goo.gl/oFmrvamhYbkjEv9a7"),
+          stop("oct23-mountain-shop", "Back to Estes Park Mountain Shop (Closes 8 PM)", "6:00 PM", "Estes Park Mountain Shop", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", false),
+          stop("oct23-bike-lake-estes", "Bike ride at Lake Estes", "6:15 PM", "Lake Estes", "https://maps.app.goo.gl/qfCoaTQHuodc1oHGA", true, "", "bike")
         ]
       }
     ]
@@ -229,7 +216,6 @@ const TRIP_DAYS = [
 
 const STORAGE_KEY_COMPLETED = "coTrip.completedStops";
 const STORAGE_KEY_GROUP = "coTrip.group";
-const STORAGE_KEY_ROUTE = "coTrip.route";
 const STORAGE_KEY_DAY_COMPLETE = "coTrip.completedDays";
 const STORAGE_KEY_THEME = "coTrip.theme";
 const STORAGE_KEY_RATINGS = "coTrip.ratings";
@@ -272,15 +258,6 @@ function saveGroup(group) {
   localStorage.setItem(STORAGE_KEY_GROUP, group);
 }
 
-function loadRoute() {
-  const raw = localStorage.getItem(STORAGE_KEY_ROUTE);
-  return raw === "maroon" ? "maroon" : "pikes";
-}
-
-function saveRoute(route) {
-  localStorage.setItem(STORAGE_KEY_ROUTE, route);
-}
-
 function loadTheme() {
   const stored = localStorage.getItem(STORAGE_KEY_THEME);
   if (stored === "light" || stored === "dark") return stored;
@@ -311,7 +288,6 @@ function saveRatings(ratings) {
 let completedStops = loadCompleted();
 let completedDays = loadCompletedDays();
 let currentGroup = loadGroup();
-let currentRoute = loadRoute();
 let currentTheme = loadTheme();
 let ratings = loadRatings();
 applyTheme(currentTheme);
@@ -493,17 +469,6 @@ function renderGroupToggleEl() {
   return wrap;
 }
 
-function renderRouteToggleEl() {
-  const wrap = el("div", "group-toggle day-group-toggle", { role: "group", "aria-label": "Route view" });
-  const pikesBtn = el("button", "group-btn route-btn", { type: "button", "data-route": "pikes" });
-  pikesBtn.textContent = "Pikes Peak";
-  const maroonBtn = el("button", "group-btn route-btn", { type: "button", "data-route": "maroon" });
-  maroonBtn.textContent = "Maroon Bells";
-  wrap.appendChild(pikesBtn);
-  wrap.appendChild(maroonBtn);
-  return wrap;
-}
-
 function renderStopList(stops) {
   const ul = el("ul", "stop-list");
   stops.forEach(s => ul.appendChild(renderStop(s)));
@@ -517,7 +482,7 @@ function renderDay(day, todayId) {
   const header = el("div", "day-header");
   const titleWrap = el("div");
   const h2 = el("h2", "day-title");
-  h2.textContent = day.title && day.title.byRoute ? day.title.byRoute[currentRoute] : day.title;
+  h2.textContent = day.title && day.title.byGroup ? day.title.byGroup[currentGroup] : day.title;
   if (day.id === todayId) {
     const pill = el("span", "today-pill");
     pill.textContent = "Today";
@@ -530,7 +495,7 @@ function renderDay(day, todayId) {
   header.appendChild(titleWrap);
   section.appendChild(header);
 
-  const stay = day.stay && day.stay.byRoute ? day.stay.byRoute[currentRoute] : day.stay;
+  const stay = day.stay && day.stay.byGroup ? day.stay.byGroup[currentGroup] : day.stay;
   if (stay) {
     const stayRow = el("div", "day-stay");
     const stayIcon = el("span", "day-stay-icon");
@@ -553,9 +518,9 @@ function renderDay(day, todayId) {
     section.appendChild(stayRow);
   }
 
-  const splitSection = day.sections.find(sec => sec.split);
-  if (splitSection) {
-    section.appendChild(splitSection.groupKind === "route" ? renderRouteToggleEl() : renderGroupToggleEl());
+  const hasSplit = day.sections.some(sec => sec.split);
+  if (hasSplit) {
+    section.appendChild(renderGroupToggleEl());
   }
 
   day.sections.forEach(sec => {
@@ -566,19 +531,14 @@ function renderDay(day, todayId) {
     }
 
     if (sec.split) {
-      const isRoute = sec.groupKind === "route";
       const note = el("div", "split-note");
-      note.textContent = isRoute
-        ? `Split: showing ${currentRoute === "pikes" ? "Pikes Peak" : "Maroon Bells"} group`
-        : `Split: showing ${currentGroup === "hikers" ? "Hikers" : "Casual"} path`;
+      note.textContent = `Split: showing ${currentGroup === "hikers" ? "Hikers" : "Casual"} path`;
       section.appendChild(note);
 
       if (sec.shared && sec.shared.length) {
         section.appendChild(renderStopList(sec.shared));
       }
-      const pathStops = isRoute
-        ? (currentRoute === "pikes" ? sec.pikes : sec.maroon)
-        : (currentGroup === "hikers" ? sec.hikers : sec.casual);
+      const pathStops = currentGroup === "hikers" ? sec.hikers : sec.casual;
       section.appendChild(renderStopList(pathStops));
     } else {
       section.appendChild(renderStopList(sec.activities));
@@ -617,13 +577,8 @@ function allStopIdsForDay(day) {
   day.sections.forEach(sec => {
     if (sec.split) {
       if (sec.shared) sec.shared.forEach(s => ids.push(s.id));
-      if (sec.groupKind === "route") {
-        sec.pikes.forEach(s => ids.push(s.id));
-        sec.maroon.forEach(s => ids.push(s.id));
-      } else {
-        sec.hikers.forEach(s => ids.push(s.id));
-        sec.casual.forEach(s => ids.push(s.id));
-      }
+      sec.hikers.forEach(s => ids.push(s.id));
+      sec.casual.forEach(s => ids.push(s.id));
     } else {
       sec.activities.forEach(s => ids.push(s.id));
     }
@@ -684,11 +639,8 @@ function setActiveTab(dayId) {
 }
 
 function renderGroupToggle() {
-  document.querySelectorAll(".group-btn:not(.route-btn)").forEach(btn => {
+  document.querySelectorAll(".group-btn").forEach(btn => {
     btn.classList.toggle("is-active", btn.dataset.group === currentGroup);
-  });
-  document.querySelectorAll(".route-btn").forEach(btn => {
-    btn.classList.toggle("is-active", btn.dataset.route === currentRoute);
   });
 }
 
@@ -773,13 +725,6 @@ document.addEventListener("keydown", ev => {
 // ---- Events -------------------------------------------------------------
 
 document.getElementById("days").addEventListener("click", ev => {
-  const routeBtn = ev.target.closest(".route-btn");
-  if (routeBtn) {
-    currentRoute = routeBtn.dataset.route;
-    saveRoute(currentRoute);
-    renderAll();
-    return;
-  }
   const btn = ev.target.closest(".group-btn");
   if (!btn) return;
   currentGroup = btn.dataset.group;
