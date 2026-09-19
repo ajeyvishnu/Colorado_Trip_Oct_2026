@@ -1,4 +1,4 @@
-const CACHE_NAME = "co-trip-v3";
+const CACHE_NAME = "co-trip-v4";
 const ASSETS = ["./", "index.html", "index-simple.html", "styles.css", "styles-nature.css", "app.js", "manifest.json", "icon.svg"];
 
 self.addEventListener("install", event => {

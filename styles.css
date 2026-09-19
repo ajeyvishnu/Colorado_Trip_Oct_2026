@@ -111,6 +111,77 @@ body {
   color: var(--text-muted);
 }
 
+.trip-select-wrap {
+  position: relative;
+  z-index: 5;
+}
+
+.trip-select-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.trip-select-caret {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--color-primary);
+  transition: transform 0.15s;
+}
+
+.trip-select-wrap.is-open .trip-select-caret {
+  transform: rotate(180deg);
+}
+
+.trip-select-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 190px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.trip-select-wrap.is-open .trip-select-menu {
+  display: flex;
+}
+
+.trip-select-option {
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.trip-select-option + .trip-select-option {
+  border-top: 1px solid var(--border);
+}
+
+.trip-select-option.is-active {
+  color: var(--color-primary);
+  background: var(--today-bg);
+}
+
 .date-tabs {
   max-width: 640px;
   margin: 0 auto;
@@ -512,6 +583,7 @@ main {
   .theme-btn:not(.is-active):hover { background: var(--border); }
   .day-complete-btn:not(.is-done):hover { background: var(--today-bg); }
   .reset-btn:hover { border-color: var(--text-muted); color: var(--text); }
+  .trip-select-option:not(.is-active):hover { background: var(--bg-alt); }
 }
 
 /* Desktop: a wider, more comfortable reading column once there's room for it */

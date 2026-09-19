@@ -17,7 +17,7 @@ const AIRBNB_1_LINK = "https://maps.app.goo.gl/3of7ebzTx19yzbJr7"; // 7170 Tobin
 const AIRBNB_2_LINK = "https://maps.app.goo.gl/GcRNsqC7xPatrLVg6"; // YMCA of the Rockies, Estes Park (Oct 22-24 nights)
 const VENUE_LINK = "https://maps.app.goo.gl/dFZP9qc2jay65Xtp7"; // Black Forest Meadows
 
-const TRIP_DAYS = [
+const COLORADO_DAYS = [
   {
     id: "oct20",
     date: "2026-10-20",
@@ -212,6 +212,100 @@ const TRIP_DAYS = [
   }
 ];
 
+const SHEN_STAY_LINK = "https://maps.app.goo.gl/pQ26o39G4NoSg4rP8"; // 250 Conicville Blvd, Mount Jackson, VA 22842
+const SHEN_OLD_RAG_PARKING_LINK = "https://maps.app.goo.gl/DELreLbHtx47722M9";
+const SHEN_OLD_RAG_ALLTRAILS = "https://www.alltrails.com/trail/us/virginia/old-rag-mountain-loop-trail?p=-1&sh=bx29ua&utm_medium=trail_share&utm_source=alltrails_virality";
+const SHEN_TUNNEL_PARKING_LINK = "https://maps.app.goo.gl/B4g54ttFpaHncmRP7";
+const SHEN_PASS_MOUNTAIN_LINK = "https://maps.app.goo.gl/oUWKM7iqhJ4EKKBFA";
+const SHEN_HOGBACK_LINK = "https://maps.app.goo.gl/f4T7v5EdRPUXdcKA9";
+const SHEN_SIGNAL_KNOB_LINK = "https://maps.app.goo.gl/WoMpwf46Xvg8kKKZ9";
+const SHEN_DICKEY_RIDGE_LINK = "https://maps.app.goo.gl/ryaKrsa1v7PnHej9A";
+
+const SHENANDOAH_DAYS = [
+  {
+    id: "shen-oct2",
+    date: "2026-10-02",
+    label: "Fri, Oct 2",
+    title: "Day 1: Travel to Mount Jackson",
+    stay: { name: "Stay", link: SHEN_STAY_LINK },
+    nextDayWake: "Wake by 4:30 AM",
+    sections: [
+      {
+        label: "",
+        split: false,
+        activities: [
+          stop("shen-oct2-leave-philly", "Leave Philadelphia", "3:00 PM", "Home", "", false),
+          stop("shen-oct2-arrive", "Arrive at accommodation (~5hr drive)", "8:00 PM", "Stay", SHEN_STAY_LINK, false)
+        ]
+      }
+    ]
+  },
+  {
+    id: "shen-oct3",
+    date: "2026-10-03",
+    label: "Sat, Oct 3",
+    title: "Day 2: Old Rag Mountain",
+    stay: { name: "Stay", link: SHEN_STAY_LINK },
+    nextDayWake: "Wake by 7:00 AM",
+    sections: [
+      {
+        label: "",
+        split: false,
+        activities: [
+          stop("shen-oct3-breakfast", "Wake up & breakfast", "4:30 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct3-leave", "Leave Mount Jackson", "5:00 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct3-parking", "Arrive at Old Rag parking", "6:20 AM", "Old Rag Mountain Parking", SHEN_OLD_RAG_PARKING_LINK, false),
+          stop("shen-oct3-old-rag-hike", "Old Rag Circuit hike", "7:00 AM", "Old Rag Mountain Trailhead", SHEN_OLD_RAG_PARKING_LINK, true, SHEN_OLD_RAG_ALLTRAILS, "hike"),
+          stop("shen-oct3-summit", "Summit (food, photos, rest)", "10:30 AM", "Old Rag Summit", "", true, "", "hike"),
+          stop("shen-oct3-return", "Return to Mount Jackson", "4:00 PM", "Stay", SHEN_STAY_LINK, false)
+        ]
+      }
+    ]
+  },
+  {
+    id: "shen-oct4",
+    date: "2026-10-04",
+    label: "Sun, Oct 4",
+    title: "Day 3: Skyline Drive & Return",
+    sections: [
+      {
+        label: "",
+        split: false,
+        activities: [
+          stop("shen-oct4-breakfast", "Breakfast & check out", "7:30 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct4-leave", "Leave Mount Jackson", "8:45 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct4-tunnel-parking", "Tunnel Parking Overlook", "9:30 AM", "Tunnel Parking Overlook", SHEN_TUNNEL_PARKING_LINK),
+          stop("shen-oct4-pass-mountain", "Pass Mountain Overlook", "9:55 AM", "Pass Mountain Overlook", SHEN_PASS_MOUNTAIN_LINK),
+          stop("shen-oct4-hogback", "Hogback Overlook", "10:25 AM", "Hogback Overlook", SHEN_HOGBACK_LINK),
+          stop("shen-oct4-signal-knob", "Signal Knob Overlook", "11:00 AM", "Signal Knob Overlook", SHEN_SIGNAL_KNOB_LINK),
+          stop("shen-oct4-dickey-ridge", "Dickey Ridge Visitor Center (passport stamp)", "11:20 AM", "Dickey Ridge Visitor Center", SHEN_DICKEY_RIDGE_LINK),
+          stop("shen-oct4-lunch", "Lunch in Front Royal", "12:15 PM", "Front Royal", "", false),
+          stop("shen-oct4-leave-for-philly", "Leave for Philadelphia", "1:15 PM", "Home", "", false)
+        ]
+      }
+    ]
+  }
+];
+
+const TRIPS = [
+  {
+    id: "colorado",
+    name: "Colorado Trip",
+    subtitle: "Oct 20-25, 2026",
+    tripStart: "2026-10-20T00:00:00",
+    tripEnd: "2026-10-25T23:59:59",
+    days: COLORADO_DAYS
+  },
+  {
+    id: "shenandoah",
+    name: "Shenandoah Trip",
+    subtitle: "Oct 2-4, 2026",
+    tripStart: "2026-10-02T00:00:00",
+    tripEnd: "2026-10-04T23:59:59",
+    days: SHENANDOAH_DAYS
+  }
+];
+
 // ---- State ------------------------------------------------------------
 
 const STORAGE_KEY_COMPLETED = "coTrip.completedStops";
@@ -219,9 +313,7 @@ const STORAGE_KEY_GROUP = "coTrip.group";
 const STORAGE_KEY_DAY_COMPLETE = "coTrip.completedDays";
 const STORAGE_KEY_THEME = "coTrip.theme";
 const STORAGE_KEY_RATINGS = "coTrip.ratings";
-
-const TRIP_START = new Date("2026-10-20T00:00:00");
-const TRIP_END = new Date("2026-10-25T23:59:59");
+const STORAGE_KEY_TRIP = "coTrip.selectedTrip";
 
 function loadCompleted() {
   try {
@@ -285,23 +377,38 @@ function saveRatings(ratings) {
   localStorage.setItem(STORAGE_KEY_RATINGS, JSON.stringify(ratings));
 }
 
+function loadSelectedTrip() {
+  const raw = localStorage.getItem(STORAGE_KEY_TRIP);
+  return TRIPS.some(t => t.id === raw) ? raw : TRIPS[0].id;
+}
+
+function saveSelectedTrip(tripId) {
+  localStorage.setItem(STORAGE_KEY_TRIP, tripId);
+}
+
+function getCurrentTrip() {
+  return TRIPS.find(t => t.id === currentTripId) || TRIPS[0];
+}
+
 let completedStops = loadCompleted();
 let completedDays = loadCompletedDays();
 let currentGroup = loadGroup();
 let currentTheme = loadTheme();
 let ratings = loadRatings();
+let currentTripId = loadSelectedTrip();
 applyTheme(currentTheme);
 
 function isTripLive() {
+  const trip = getCurrentTrip();
   const now = new Date();
-  return now >= TRIP_START && now <= TRIP_END;
+  return now >= new Date(trip.tripStart) && now <= new Date(trip.tripEnd);
 }
 
 function todayDayId() {
   if (!isTripLive()) return null;
   const now = new Date();
   const y = now.getFullYear(), m = now.getMonth(), d = now.getDate();
-  const day = TRIP_DAYS.find(dd => {
+  const day = getCurrentTrip().days.find(dd => {
     const dt = new Date(dd.date + "T00:00:00");
     return dt.getFullYear() === y && dt.getMonth() === m && dt.getDate() === d;
   });
@@ -597,7 +704,7 @@ function toggleStop(stopId) {
 }
 
 function toggleDayComplete(dayId) {
-  const day = TRIP_DAYS.find(d => d.id === dayId);
+  const day = getCurrentTrip().days.find(d => d.id === dayId);
   const ids = allStopIdsForDay(day);
   const nowDone = !completedDays.has(dayId);
 
@@ -616,7 +723,7 @@ function toggleDayComplete(dayId) {
 function renderDateTabs(todayId) {
   const nav = document.getElementById("dateTabs");
   nav.innerHTML = "";
-  TRIP_DAYS.forEach(day => {
+  getCurrentTrip().days.forEach(day => {
     const btn = el("button", "date-tab", { type: "button", "data-day-id": day.id, "aria-label": day.label });
     btn.textContent = String(Number(day.date.split("-")[2]));
     if (day.id === todayId) {
@@ -650,14 +757,24 @@ function renderThemeToggle() {
   });
 }
 
+function renderTripSelect() {
+  const trip = getCurrentTrip();
+  document.getElementById("appTitle").textContent = trip.name;
+  document.getElementById("appSubtitle").textContent = trip.subtitle;
+  document.querySelectorAll(".trip-select-option").forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.tripId === trip.id);
+  });
+}
+
 function renderAll() {
   const todayId = todayDayId();
   const daysContainer = document.getElementById("days");
   daysContainer.innerHTML = "";
-  TRIP_DAYS.forEach(day => daysContainer.appendChild(renderDay(day, todayId)));
+  getCurrentTrip().days.forEach(day => daysContainer.appendChild(renderDay(day, todayId)));
   renderDateTabs(todayId);
   renderGroupToggle();
   renderThemeToggle();
+  renderTripSelect();
   if (todayId) setActiveTab(todayId);
 }
 
@@ -739,6 +856,32 @@ document.getElementById("themeToggle").addEventListener("click", ev => {
   applyTheme(currentTheme);
   saveTheme(currentTheme);
   renderThemeToggle();
+});
+
+document.getElementById("tripSelectTrigger").addEventListener("click", ev => {
+  ev.stopPropagation();
+  const wrap = document.getElementById("tripSelectWrap");
+  const willOpen = !wrap.classList.contains("is-open");
+  wrap.classList.toggle("is-open", willOpen);
+  document.getElementById("tripSelectTrigger").setAttribute("aria-expanded", String(willOpen));
+});
+
+document.getElementById("tripSelectMenu").addEventListener("click", ev => {
+  const btn = ev.target.closest(".trip-select-option");
+  if (!btn) return;
+  currentTripId = btn.dataset.tripId;
+  saveSelectedTrip(currentTripId);
+  document.getElementById("tripSelectWrap").classList.remove("is-open");
+  document.getElementById("tripSelectTrigger").setAttribute("aria-expanded", "false");
+  renderAll();
+});
+
+document.addEventListener("click", ev => {
+  const wrap = document.getElementById("tripSelectWrap");
+  if (wrap.classList.contains("is-open") && !wrap.contains(ev.target)) {
+    wrap.classList.remove("is-open");
+    document.getElementById("tripSelectTrigger").setAttribute("aria-expanded", "false");
+  }
 });
 
 document.getElementById("resetBtn").addEventListener("click", () => {

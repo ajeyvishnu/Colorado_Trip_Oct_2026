@@ -97,7 +97,7 @@ body {
   justify-content: space-between;
   gap: 0.75rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .theme-toggle {
@@ -152,6 +152,77 @@ body {
   margin: 0.15rem 0 0;
   font-size: 0.875rem;
   color: rgba(255,255,255,0.8);
+}
+
+.trip-select-wrap {
+  position: relative;
+  z-index: 5;
+}
+
+.trip-select-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.trip-select-caret {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--color-gold);
+  transition: transform 0.15s;
+}
+
+.trip-select-wrap.is-open .trip-select-caret {
+  transform: rotate(180deg);
+}
+
+.trip-select-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 190px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.trip-select-wrap.is-open .trip-select-menu {
+  display: flex;
+}
+
+.trip-select-option {
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.trip-select-option + .trip-select-option {
+  border-top: 1px solid var(--border);
+}
+
+.trip-select-option.is-active {
+  color: var(--color-primary);
+  background: var(--today-bg);
 }
 
 .date-tabs {
@@ -573,6 +644,7 @@ main {
   .theme-btn:not(.is-active):hover { background: rgba(255,255,255,0.28); }
   .day-complete-btn:not(.is-done):hover { background: var(--today-bg); }
   .reset-btn:hover { border-color: var(--text-muted); color: var(--text); }
+  .trip-select-option:not(.is-active):hover { background: var(--bg-alt); }
 }
 
 /* Desktop: a wider, more comfortable reading column once there's room for it */

@@ -20,9 +20,16 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <div>
-      <h1 class="app-title">Colorado Trip</h1>
-      <p class="app-subtitle">Oct 20-25, 2026</p>
+    <div class="trip-select-wrap" id="tripSelectWrap">
+      <button type="button" class="trip-select-trigger" id="tripSelectTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="tripSelectMenu">
+        <h1 class="app-title" id="appTitle">Colorado Trip</h1>
+        <svg class="trip-select-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <p class="app-subtitle" id="appSubtitle">Oct 20-25, 2026</p>
+      <div class="trip-select-menu" id="tripSelectMenu" role="listbox" aria-label="Choose a trip">
+        <button type="button" class="trip-select-option" data-trip-id="colorado" role="option">Colorado Trip</button>
+        <button type="button" class="trip-select-option" data-trip-id="shenandoah" role="option">Shenandoah Trip</button>
+      </div>
     </div>
     <div class="theme-toggle" id="themeToggle" role="group" aria-label="Day or night mode">
       <button type="button" class="theme-btn" data-theme-choice="light" aria-label="Day mode">
