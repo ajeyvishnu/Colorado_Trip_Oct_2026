@@ -223,10 +223,10 @@ const SHEN_DICKEY_RIDGE_LINK = "https://maps.app.goo.gl/ryaKrsa1v7PnHej9A";
 
 const SHENANDOAH_DAYS = [
   {
-    id: "shen-oct2",
-    date: "2026-10-02",
-    label: "Fri, Oct 2",
-    title: "Day 1: Travel to Mount Jackson",
+    id: "shen-oct3",
+    date: "2026-10-03",
+    label: "Sat, Oct 3",
+    title: "Day 1: Skyline Drive",
     stay: { name: "Stay", link: SHEN_STAY_LINK },
     nextDayWake: "Wake by 4:30 AM",
     sections: [
@@ -234,30 +234,14 @@ const SHENANDOAH_DAYS = [
         label: "",
         split: false,
         activities: [
-          stop("shen-oct2-leave-philly", "Leave Philadelphia", "3:00 PM", "Home", "", false),
-          stop("shen-oct2-arrive", "Arrive at accommodation (~5hr drive)", "8:00 PM", "Stay", SHEN_STAY_LINK, false)
-        ]
-      }
-    ]
-  },
-  {
-    id: "shen-oct3",
-    date: "2026-10-03",
-    label: "Sat, Oct 3",
-    title: "Day 2: Old Rag Mountain",
-    stay: { name: "Stay", link: SHEN_STAY_LINK },
-    nextDayWake: "Wake by 7:00 AM",
-    sections: [
-      {
-        label: "",
-        split: false,
-        activities: [
-          stop("shen-oct3-breakfast", "Wake up & breakfast", "4:30 AM", "Stay", SHEN_STAY_LINK, false),
-          stop("shen-oct3-leave", "Leave Mount Jackson", "5:00 AM", "Stay", SHEN_STAY_LINK, false),
-          stop("shen-oct3-parking", "Arrive at Old Rag parking", "6:20 AM", "Old Rag Mountain Parking", SHEN_OLD_RAG_PARKING_LINK, false),
-          stop("shen-oct3-old-rag-hike", "Old Rag Circuit hike", "7:00 AM", "Old Rag Mountain Trailhead", SHEN_OLD_RAG_PARKING_LINK, true, SHEN_OLD_RAG_ALLTRAILS, "hike"),
-          stop("shen-oct3-summit", "Summit (food, photos, rest)", "10:30 AM", "Old Rag Summit", "", true, "", "hike"),
-          stop("shen-oct3-return", "Return to Mount Jackson", "4:00 PM", "Stay", SHEN_STAY_LINK, false)
+          stop("shen-oct3-leave-philly", "Leave Philadelphia", "7:00 AM", "Home", "", false),
+          stop("shen-oct3-lunch", "Lunch in Front Royal", "12:00 PM", "Front Royal", "", false),
+          stop("shen-oct3-dickey-ridge", "Dickey Ridge Visitor Center (passport stamp)", "1:00 PM", "Dickey Ridge Visitor Center", SHEN_DICKEY_RIDGE_LINK),
+          stop("shen-oct3-signal-knob", "Signal Knob Overlook", "1:35 PM", "Signal Knob Overlook", SHEN_SIGNAL_KNOB_LINK),
+          stop("shen-oct3-hogback", "Hogback Overlook", "2:10 PM", "Hogback Overlook", SHEN_HOGBACK_LINK),
+          stop("shen-oct3-pass-mountain", "Pass Mountain Overlook", "3:00 PM", "Pass Mountain Overlook", SHEN_PASS_MOUNTAIN_LINK),
+          stop("shen-oct3-tunnel-parking", "Tunnel Parking Overlook", "3:20 PM", "Tunnel Parking Overlook", SHEN_TUNNEL_PARKING_LINK),
+          stop("shen-oct3-arrive", "Arrive at Stay", "5:30 PM", "Stay", SHEN_STAY_LINK, false)
         ]
       }
     ]
@@ -266,21 +250,18 @@ const SHENANDOAH_DAYS = [
     id: "shen-oct4",
     date: "2026-10-04",
     label: "Sun, Oct 4",
-    title: "Day 3: Skyline Drive & Return",
+    title: "Day 2: Old Rag Mountain",
     sections: [
       {
         label: "",
         split: false,
         activities: [
-          stop("shen-oct4-breakfast", "Breakfast & check out", "7:30 AM", "Stay", SHEN_STAY_LINK, false),
-          stop("shen-oct4-leave", "Leave Mount Jackson", "8:45 AM", "Stay", SHEN_STAY_LINK, false),
-          stop("shen-oct4-tunnel-parking", "Tunnel Parking Overlook", "9:30 AM", "Tunnel Parking Overlook", SHEN_TUNNEL_PARKING_LINK),
-          stop("shen-oct4-pass-mountain", "Pass Mountain Overlook", "9:55 AM", "Pass Mountain Overlook", SHEN_PASS_MOUNTAIN_LINK),
-          stop("shen-oct4-hogback", "Hogback Overlook", "10:25 AM", "Hogback Overlook", SHEN_HOGBACK_LINK),
-          stop("shen-oct4-signal-knob", "Signal Knob Overlook", "11:00 AM", "Signal Knob Overlook", SHEN_SIGNAL_KNOB_LINK),
-          stop("shen-oct4-dickey-ridge", "Dickey Ridge Visitor Center (passport stamp)", "11:20 AM", "Dickey Ridge Visitor Center", SHEN_DICKEY_RIDGE_LINK),
-          stop("shen-oct4-lunch", "Lunch in Front Royal", "12:15 PM", "Front Royal", "", false),
-          stop("shen-oct4-leave-for-philly", "Leave for Philadelphia", "1:15 PM", "Home", "", false)
+          stop("shen-oct4-breakfast", "Wake up & breakfast", "4:30 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct4-leave", "Check out & leave Mount Jackson", "5:00 AM", "Stay", SHEN_STAY_LINK, false),
+          stop("shen-oct4-parking", "Arrive at Old Rag parking", "6:20 AM", "Old Rag Mountain Parking", SHEN_OLD_RAG_PARKING_LINK, false),
+          stop("shen-oct4-old-rag-hike", "Old Rag Circuit hike", "7:00 AM", "Old Rag Mountain Trailhead", SHEN_OLD_RAG_PARKING_LINK, true, SHEN_OLD_RAG_ALLTRAILS, "hike"),
+          stop("shen-oct4-summit", "Summit (food, photos, rest)", "10:30 AM", "Old Rag Summit", "", true, "", "hike"),
+          stop("shen-oct4-leave-for-philly", "Leave for Philadelphia (~5hr drive)", "3:30 PM", "Home", "", false)
         ]
       }
     ]
@@ -299,8 +280,8 @@ const TRIPS = [
   {
     id: "shenandoah",
     name: "Shenandoah Trip",
-    subtitle: "Oct 2-4, 2026",
-    tripStart: "2026-10-02T00:00:00",
+    subtitle: "Oct 3-4, 2026",
+    tripStart: "2026-10-03T00:00:00",
     tripEnd: "2026-10-04T23:59:59",
     days: SHENANDOAH_DAYS
   }
